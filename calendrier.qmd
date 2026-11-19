@@ -1,0 +1,55 @@
+<div class="portal-hero">
+
+<p class="eyebrow">STT-2902 — Modélisation statistique</p>
+
+# Calendrier
+
+<p class="hero-lead">15 semaines, semaine de lecture en semaine 9.</p>
+
+</div>
+
+::: {.callout-warning}
+## La version Brio fait foi
+
+Ce calendrier est fourni à titre indicatif. La version officielle est celle déposée sur **Brio** : en cas de doute ou de différence entre les deux, c'est l'information sur **Brio** qui prévaut.
+:::
+
+| Sem. | Thème | Contenu | Lien avec le secondaire / activité |
+|-|---|------|----|
+| 1 | Rappels et mise en contexte | Test diagnostique sur STT-1300 et STT-1500. Rappels ciblés : estimation, IC, tests. La statistique dans le programme du secondaire. | Lecture de la *Progression des apprentissages* (statistique et probabilités). |
+| 2 | Deux variables quantitatives | Nuage de points, covariance, coefficient de corrélation, propriétés (\|*r*\| ≤ 1 par Cauchy-Schwarz). | [Méthode du rectangle](activites.qmd#rectangle) : que vaut-elle ? |
+| 3 | Les droites du secondaire | Droite à main levée, droite de Mayer, droite médiane-médiane. | [Atelier Mayer, médiane-médiane et moindres carrés](activites.qmd#mayer). [**Évaluation en classe 1**]{.cal-labo} |
+| 4 | Moindres carrés | Dérivation, propriétés des résidus, décomposition des sommes de carrés, *R*². Lien entre *r*, la pente et *R*². | Décoder la sortie d'une régression à la calculatrice graphique et dans Desmos. |
+| 5 | Propriétés des estimateurs | Espérance et variance des estimateurs ; Gauss-Markov illustré avec la pente de Mayer. | Simulation : comparer la variance des trois droites. |
+| 6 | Inférence en régression | Tests et IC pour la pente ; intervalles de confiance et de prévision. | Interpolation et extrapolation : quand peut-on faire confiance à une prévision ? [**Évaluation en classe 2**]{.cal-labo} |
+| 7 | Validation du modèle | Résidus, transformations (modèle exponentiel), valeurs aberrantes et influentes, robustesse. | [Écart moyen ou écart type ?](activites.qmd#ecart) Régression L1 et médiane-médiane. |
+| 8 | [**Examen de mi-session**]{.cal-exam} | Régression linéaire simple. | |
+| [9]{.cal-off} | | SEMAINE DE LECTURE — choix des sujets de projet | |
+| 10 | Comparer des distributions | Diagrammes de quartiles côte à côte, test de permutation, introduction au modèle d'ANOVA. | Comparer des distributions comme en 4^e^ et 5^e^ secondaire. [**Proposition de projet**]{.cal-projet} |
+| 11 | ANOVA à un facteur | Sommes de carrés, test *F*, hypothèses, comparaisons multiples simples. Expérience ou étude observationnelle. | [**Évaluation en classe 3**]{.cal-labo} |
+| 12 | Tableaux de contingence (I) | Probabilités conjointes, marginales et conditionnelles ; dépistage et théorème de Bayes ; paradoxe de Simpson. | [Dépistage](activites.qmd#depistage) et [Simpson](activites.qmd#simpson). |
+| 13 | Tableaux de contingence (II) | Test du khi-deux d'indépendance, risque relatif, rapport de cotes. Association et causalité. | [**Évaluation en classe 4**]{.cal-labo} |
+| 14 | [**Présentations des projets**]{.cal-presentations} | Chaque équipe fait vivre une partie de son activité à la classe. | [**Dossier de l'enseignant**]{.cal-projet} |
+| 15 | Synthèse | Retour sur les conceptions erronées ; révision. | [**Évaluation en classe 5**]{.cal-labo} |
+| — | [**Examen final**]{.cal-exam} | Période des examens. | |
+
+<script>
+// Pandoc ne génère pas de colspan pour les tableaux en pipes : on fusionne
+// la ligne de la semaine de lecture (repérée par .cal-off) en une seule
+// cellule pleine largeur après coup.
+(function () {
+  var marqueur = document.querySelector('#quarto-document-content .cal-off');
+  if (!marqueur) return;
+  var ligne = marqueur.closest('tr');
+  if (!ligne || ligne.children.length < 4) return;
+
+  var sujet = ligne.children[2].textContent.trim();
+
+  ligne.innerHTML = '';
+  var cellule = document.createElement('td');
+  cellule.className = 'cal-off cal-off-banner';
+  cellule.colSpan = 4;
+  cellule.textContent = 'Semaine 9 · ' + sujet;
+  ligne.appendChild(cellule);
+})();
+</script>

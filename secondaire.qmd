@@ -1,0 +1,81 @@
+<div class="portal-hero">
+
+<p class="eyebrow">STT-2902 — Modélisation statistique</p>
+
+# Du secondaire à la théorie
+
+<p class="hero-lead">Ce que vos élèves feront au secondaire, et ce que vous devez savoir pour le leur enseigner.</p>
+
+</div>
+
+Les notions ci-dessous viennent de la *Progression des apprentissages au secondaire en mathématique* du ministère de l'Éducation. Pour chacune, on indique ce que le cours en fait. Le partage exact entre les séquences (CST, TS, SN) et les années est à vérifier dans les tableaux du document officiel.
+
+## Ce que STT-1300 et STT-1500 couvrent déjà
+
+STT-1300 couvre les variables aléatoires, la loi binomiale, l'inférence par simulation, l'estimation, le théorème central limite, les tests et les intervalles de confiance, les lois *t*, khi-deux et *F*, la covariance et la corrélation, l'association et la causalité, ainsi que les biais et les questions éthiques. STT-1500 couvre les fondements des probabilités.
+
+Le cours ne refait donc pas la statistique descriptive, l'échantillonnage ni l'estimation : il les tient pour acquises et consacre ce temps aux méthodes à deux variables et à leurs liens avec le secondaire.
+
+## Distributions à deux caractères
+
+| Au secondaire | Dans STT-2902 |
+|---|---|
+| Nuage de points, tableau à double entrée | Point de départ de la régression (semaine 2) et des tableaux de contingence (semaines 12–13) |
+| Appréciation qualitative de la corrélation, approximation du coefficient de corrélation | Définition et propriétés de *r* ; preuve que \|*r*\| ≤ 1 ; lien avec la pente et *R*² ; [précision de la méthode du rectangle](activites.qmd#rectangle) |
+| Droite de régression à main levée, droite de Mayer, droite médiane-médiane | La pente de Mayer est un estimateur linéaire sans biais : Gauss-Markov dit que les moindres carrés font mieux. La médiane-médiane, plus variable, résiste aux valeurs aberrantes ([atelier](activites.qmd#mayer)) |
+| Modèle fonctionnel le mieux ajusté (linéaire, exponentiel, etc.) | Transformations, linéarisation par le logarithme, diagnostic par les résidus (semaine 7) |
+| Interpolation et extrapolation | Intervalles de confiance et de prévision ; danger de l'extrapolation hors du domaine observé (semaine 6) |
+| Comparer des distributions à deux caractères | Comparaison de groupes : ANOVA à un facteur (semaines 10–11) |
+
+## Distributions à un caractère
+
+| Au secondaire | Dans STT-2902 |
+|---|---|
+| Écart moyen et écart type | Pourquoi élever au carré ? La médiane minimise les écarts absolus, la moyenne minimise les carrés ; régression L1 et moindres carrés ([activité](activites.qmd#ecart)) |
+| Diagramme de quartiles, comparaison de distributions | Diagrammes de quartiles côte à côte comme porte d'entrée de l'ANOVA ; test de permutation, puis test *F* |
+| Méthodes d'échantillonnage et sources de biais | Expérience randomisée ou étude observationnelle : ce qu'on peut conclure sur la causalité |
+
+## Probabilités
+
+| Au secondaire | Dans STT-2902 |
+|---|---|
+| Probabilités conditionnelles et prise de décision | Tableaux de contingence, dépistage, théorème de Bayes ; confusion entre P(A \| B) et P(B \| A) ([activité](activites.qmd#depistage)) |
+| Événements dépendants et indépendants | Test du khi-deux d'indépendance |
+| Probabilité fréquentielle et probabilité théorique | Comparer des effectifs observés à des effectifs théoriques ; simulation de la loi du khi-deux |
+| Espérance mathématique, moyenne pondérée | Espérance et variance des estimateurs (semaine 5) |
+
+## Conceptions erronées à surveiller
+
+::: {.portal-grid}
+
+::: {.portal-card}
+### *r* et la pente
+« Plus la droite est inclinée, plus la corrélation est forte. » Faux : *r* ne dépend pas des unités, la pente oui.
+:::
+
+::: {.portal-card}
+### *r* ≈ 0
+« Il n'y a aucun lien entre les variables. » Un lien non linéaire fort peut donner *r* ≈ 0.
+:::
+
+::: {.portal-card}
+### Extrapoler
+« La droite prédit aussi bien loin des données. » L'incertitude augmente et le modèle peut cesser d'être valide.
+:::
+
+::: {.portal-card}
+### Corrélation et causalité
+« Les deux variables sont corrélées, donc l'une cause l'autre. » Variables confondantes et sens de la relation.
+:::
+
+::: {.portal-card}
+### Inverser le conditionnement
+« Le test est fiable à 95 %, donc un résultat positif veut dire 95 % de chances d'être malade. »
+:::
+
+::: {.portal-card}
+### Agréger les groupes
+Une tendance dans chaque groupe peut s'inverser une fois les groupes réunis (paradoxe de Simpson).
+:::
+
+:::

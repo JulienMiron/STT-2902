@@ -1,0 +1,88 @@
+<div class="portal-hero">
+
+<p class="eyebrow">STT-2902 — Modélisation statistique</p>
+
+# Plan de cours
+
+<p class="hero-lead">Cours de 3 crédits · 3 h de cours et 6 h de travail personnel par semaine · offert aux futures enseignantes et futurs enseignants de mathématiques au secondaire.</p>
+
+</div>
+
+::: {.callout-warning}
+## La version Brio fait foi
+
+Ce plan de cours est fourni à titre indicatif. La version officielle est celle déposée sur **Brio** : en cas de doute ou de différence entre les deux, c'est l'information sur **Brio** qui prévaut.
+:::
+
+## En bref
+
+Le cours étudie l'association entre deux variables : régression linéaire simple, analyse de variance à un facteur et tableaux de contingence. On y estime les paramètres par les moindres carrés, on valide les hypothèses du modèle, on distingue association et causalité et on interprète les résultats en contexte.
+
+Le cours s'adresse à de futurs enseignants. Chaque notion de statistique ou de probabilité du programme du secondaire y est donc reprise avec la théorie qui l'explique : *pourquoi* la droite de Mayer fonctionne, *ce que vaut* la méthode du rectangle, *pourquoi* on élève les écarts au carré. La page [Du secondaire à la théorie](secondaire.qmd) détaille ces liens.
+
+## Préalables
+
+STT-1000 (*Probabilités et statistique*), ou STT-1300 (*Introduction à l'inférence statistique*) et STT-1500 (*Probabilités*).
+
+::: {.module-readiness}
+
+::: {.module-readiness-card}
+### Ce qui est considéré comme acquis
+
+- Variables aléatoires, espérance, variance, lois usuelles
+- Statistique descriptive et échantillonnage
+- Estimation ponctuelle, théorème central limite
+- Intervalles de confiance et tests d'hypothèses
+- Lois de Student, du khi-deux et de Fisher
+- Covariance, corrélation, association et causalité (premier contact)
+:::
+
+::: {.module-readiness-card}
+### Ce qui est revu rapidement
+
+- Un test diagnostique au premier cours repère les notions à revoir.
+- La semaine 1 rappelle l'essentiel, puis on passe tout de suite aux deux variables.
+- Des exercices de rappel (non notés) sont offerts pour ceux qui en ont besoin.
+:::
+
+:::
+
+## Objectifs
+
+À la fin du cours, l'étudiante ou l'étudiant devrait pouvoir :
+
+**O1. Modéliser** la relation entre deux variables par une régression linéaire simple, une ANOVA à un facteur ou un tableau de contingence, et choisir le modèle selon la nature des variables.
+
+**O2. Estimer et inférer** : dériver les estimateurs des moindres carrés, construire des intervalles de confiance et de prévision et réaliser les tests usuels (pente, test *F*, khi-deux).
+
+**O3. Valider** un modèle à l'aide des résidus, proposer une transformation et repérer les valeurs aberrantes et influentes.
+
+**O4. Justifier** les méthodes du secondaire (droite à main levée, de Mayer, médiane-médiane, méthode du rectangle, écart moyen, probabilités conditionnelles) et en connaître les forces et les limites.
+
+**O5. Interpréter en contexte** et distinguer association et causalité, notamment dans les études observationnelles.
+
+**O6. Enseigner** : concevoir une activité pour le secondaire qui repose sur une analyse statistique juste, et anticiper les conceptions erronées des élèves.
+
+## Principes pédagogiques
+
+- **Un fil conducteur : « du secondaire à la théorie ».** Chaque bloc part d'une méthode du programme de mathématique du secondaire, puis la formalise.
+- **La simulation pour comprendre**, dans le prolongement de l'inférence par simulation vue en STT-1300 : comparer des estimateurs, évaluer une méthode d'approximation, construire un test de permutation.
+- **Les outils de la classe** : R pour la théorie et les simulations, mais aussi GeoGebra, Desmos, le tableur et la calculatrice graphique.
+- **Les conceptions erronées comme matériau** : à chaque bloc, on analyse des réponses d'élèves fictives et des extraits de manuels.
+
+## Évaluation
+
+| Élément | Poids | Remarques |
+|---|--:|---|
+| Évaluations en classe (5) | 10 % | Les 4 meilleures comptent ; souvent sous forme de diagnostic de réponses d'élèves |
+| Examen de mi-session | 30 % | Régression linéaire simple |
+| [Projet SAÉ](projet.qmd) | 25 % | En équipe : activité pour le secondaire et dossier de l'enseignant |
+| Examen final | 35 % | ANOVA, tableaux de contingence et régression |
+
+Les dates sont indiquées dans le [calendrier](calendrier.qmd).
+
+## Références
+
+- Ministère de l'Éducation du Québec. *Progression des apprentissages au secondaire — Mathématique*. [Version en ligne](https://cdn-contenu.quebec.ca/cdn-contenu/education/pfeq/secondaire/progressions-apprentissages/PFEQ-progression-apprentissages-mathematique-secondaire.pdf).
+- Manuel du cours et notes de cours (sur Brio).
+- Manuels du secondaire (2^e^ cycle) pour les activités d'analyse critique.

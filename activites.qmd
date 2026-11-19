@@ -1,0 +1,168 @@
+<div class="portal-hero">
+
+<p class="eyebrow">STT-2902 — Modélisation statistique</p>
+
+# Activités
+
+<p class="hero-lead">Des activités qui partent d'une méthode du secondaire et la passent au crible de la théorie ou de la simulation.</p>
+
+</div>
+
+Le code R ci-dessous peut être copié tel quel. Les mêmes activités se font aussi dans GeoGebra, Desmos ou un tableur. Le choix de l'outil fait partie de la discussion : quel outil utiliseriez-vous en classe, et pourquoi ?
+
+## Mayer, médiane-médiane et moindres carrés {#mayer}
+
+::: {.callout-note}
+## Questions
+
+1. Montrer que la pente de Mayer, $(\bar y_2 - \bar y_1)/(\bar x_2 - \bar x_1)$, est une combinaison linéaire des $y_i$ et qu'elle est sans biais sous le modèle $Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$.
+2. Calculer sa variance et la comparer à celle de la pente des moindres carrés. Quel résultat du cours garantit l'ordre obtenu ?
+3. Par simulation, comparer les trois droites : biais, écart type, puis effet d'une valeur aberrante.
+:::
+
+```r
+# Droite de Mayer : on trie selon x, on coupe en deux groupes de même taille
+# et on fait passer la droite par les deux points moyens.
+droite_mayer <- function(x, y) {
+  o <- order(x); x <- x[o]; y <- y[o]
+  g <- seq_along(x) <= length(x) / 2
+  p1 <- c(mean(x[g]), mean(y[g]))
+  p2 <- c(mean(x[!g]), mean(y[!g]))
+  pente <- (p2[2] - p1[2]) / (p2[1] - p1[1])
+  c(ordonnee = p1[2] - pente * p1[1], pente = pente)
+}
+
+# Droite médiane-médiane : trois groupes, un point médian par groupe.
+droite_med_med <- function(x, y) {
+  o <- order(x); x <- x[o]; y <- y[o]
+  groupe <- cut(seq_along(x), 3, labels = FALSE)
+  mx <- tapply(x, groupe, median)
+  my <- tapply(y, groupe, median)
+  pente <- (my[3] - my[1]) / (mx[3] - mx[1])
+  ordonnee <- (sum(my) - pente * sum(mx)) / 3
+  c(ordonnee = unname(ordonnee), pente = unname(pente))
+}
+
+# 2000 échantillons de taille 30 sous y = 2 + 0,5x + erreur
+set.seed(2902)
+n <- 30; B <- 2000
+x <- runif(n, 0, 20)               # x fixé d'un échantillon à l'autre
+simuler <- function(aberrante = FALSE) {
+  pentes <- replicate(B, {
+    y <- 2 + 0.5 * x + rnorm(n, sd = 2)
+    if (aberrante) y[which.max(x)] <- y[which.max(x)] - 25
+    c(mco = unname(coef(lm(y ~ x))[2]),
+      mayer = unname(droite_mayer(x, y)["pente"]),
+      med_med = unname(droite_med_med(x, y)["pente"]))
+  })
+  round(rbind(moyenne = rowMeans(pentes), ecart_type = apply(pentes, 1, sd)), 4)
+}
+simuler()
+simuler(aberrante = TRUE)
+```
+
+Ce qu'on observe : sans valeur aberrante, les moindres carrés et Mayer sont sans biais et les moindres carrés ont le plus petit écart type. Avec une valeur aberrante, la pente des moindres carrés et celle de Mayer s'effondrent, alors que la médiane-médiane bouge peu. À discuter : quelle droite enseigner, et comment présenter ce compromis à des élèves ?
+
+## Que vaut la méthode du rectangle ? {#rectangle}
+
+Plusieurs manuels du secondaire estiment *r* par $\pm(1 - l/L)$, où $l$ et $L$ sont la largeur et la longueur du rectangle qui entoure le nuage.
+
+::: {.callout-note}
+## Questions
+
+1. Sur une dizaine de nuages, estimer *r* à la main avec la méthode du rectangle, puis comparer à la valeur exacte.
+2. La méthode dépend-elle des unités choisies pour les axes ? Du nombre de points ? D'une valeur aberrante ?
+3. Comment présenter cette méthode honnêtement à des élèves ?
+:::
+
+```r
+# Version automatisée (approximative) : on standardise les deux axes, on
+# fait tourner de 45 degrés et on mesure le rectangle dans ce repère.
+r_rectangle <- function(x, y) {
+  zx <- (x - mean(x)) / sd(x); zy <- (y - mean(y)) / sd(y)
+  u <- (zx + zy) / sqrt(2); v <- (zy - zx) / sqrt(2)
+  long <- max(diff(range(u)), diff(range(v)))
+  larg <- min(diff(range(u)), diff(range(v)))
+  signe <- ifelse(diff(range(u)) >= diff(range(v)), 1, -1)
+  signe * (1 - larg / long)
+}
+comparaison <- t(replicate(500, {
+  rho <- runif(1, -0.95, 0.95)
+  x <- rnorm(40); y <- rho * x + sqrt(1 - rho^2) * rnorm(40)
+  c(r = cor(x, y), rectangle = r_rectangle(x, y))
+}))
+summary(comparaison[, "rectangle"] - comparaison[, "r"])
+plot(comparaison, xlab = "r exact", ylab = "Méthode du rectangle"); abline(0, 1)
+```
+
+## Écart moyen ou écart type ? {#ecart}
+
+::: {.callout-note}
+## Questions
+
+1. Montrer que la valeur $m$ qui minimise $\sum |y_i - m|$ est la médiane, et que celle qui minimise $\sum (y_i - m)^2$ est la moyenne.
+2. Que devient cette idée en régression ? Comparer les moindres carrés à la régression qui minimise la somme des écarts absolus (régression L1).
+3. Pourquoi l'écart type a-t-il fini par s'imposer ? Que répondre à un élève qui trouve l'écart moyen plus naturel ?
+:::
+
+```r
+y <- c(2, 3, 3, 4, 5, 6, 15)
+centres <- seq(0, 16, by = 0.01)
+ea <- sapply(centres, function(m) mean(abs(y - m)))
+eq <- sapply(centres, function(m) mean((y - m)^2))
+c(minimise_ecarts_absolus = centres[which.min(ea)], mediane = median(y),
+  minimise_carres = centres[which.min(eq)], moyenne = mean(y))
+```
+
+## Dépistage et probabilités conditionnelles {#depistage}
+
+Une maladie touche 1 % de la population. Un test a une sensibilité de 95 % et une spécificité de 90 %.
+
+::: {.callout-note}
+## Questions
+
+1. Construire le tableau de contingence pour une population de 10 000 personnes.
+2. Quelle est la probabilité d'être malade sachant que le test est positif ? (Réponse : environ 8,8 %.)
+3. Rédiger la question telle qu'on la poserait en 5^e^ secondaire, puis trois réponses d'élèves erronées et la rétroaction à leur donner.
+:::
+
+```r
+prev <- 0.01; sens <- 0.95; spec <- 0.90
+sens * prev / (sens * prev + (1 - spec) * (1 - prev))   # valeur prédictive positive
+```
+
+## Le paradoxe de Simpson {#simpson}
+
+Les admissions aux études supérieures à Berkeley (1973), jeu de données intégré à R.
+
+::: {.callout-note}
+## Questions
+
+1. Globalement, les hommes sont admis plus souvent que les femmes (44,5 % contre 30,4 %). Que se passe-t-il département par département ?
+2. Expliquer le renversement à l'aide des probabilités conditionnelles et de la répartition des candidatures.
+3. Quelles conclusions sur la discrimination peut-on tirer, et lesquelles ne peut-on pas tirer ?
+:::
+
+```r
+tab <- margin.table(UCBAdmissions, c(1, 2))
+prop.table(tab, 2)["Admitted", ]                    # taux d'admission global
+round(prop.table(UCBAdmissions, c(2, 3))["Admitted", , ], 2)   # par département
+```
+
+## Décoder la calculatrice {#calculatrice}
+
+::: {.callout-note}
+## Questions
+
+1. Faire une régression linéaire à la calculatrice graphique, dans Desmos et dans R sur les mêmes données.
+2. Expliquer chaque nombre affiché ($a$, $b$, $r$, $r^2$) et le relier aux formules du cours.
+3. Qu'est-ce que la calculatrice n'affiche pas, et qui serait nécessaire pour une inférence ?
+:::
+
+## Analyse de manuels {#manuels}
+
+En équipe, choisir une section d'un manuel du secondaire portant sur la régression, la corrélation ou les probabilités conditionnelles :
+
+- relever les imprécisions, les extrapolations abusives et les causalités implicites ;
+- vérifier les exemples numériques ;
+- proposer une version corrigée d'un exemple et d'un exercice.

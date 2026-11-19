@@ -1,0 +1,28 @@
+---
+title: "STT-2902"
+---
+
+<script>document.body.classList.add('page-home');</script>
+
+<div class="home-page">
+<div class="home-hero">
+<div class="home-hero__inner">
+<div class="home-hero-copy">
+
+<h1 class="home-title">STT-2902</h1>
+<p class="home-course-code">Modélisation statistique · Baccalauréat en enseignement au secondaire, mathématiques</p>
+<p class="home-lead">Régression linéaire simple, analyse de variance à un facteur et tableaux de contingence, revus à partir de ce que vous enseignerez au secondaire : droites de Mayer et médiane-médiane, coefficient de corrélation, interpolation et extrapolation, comparaison de distributions et probabilités conditionnelles.</p>
+
+<div class="home-actions">
+<a class="home-action home-action--primary" href="plan-de-cours.html"><span>Plan de cours</span></a>
+<a class="home-action home-action--secondary" href="calendrier.html"><span>Calendrier</span></a>
+<a class="home-action home-action--secondary" href="secondaire.html"><span>Du secondaire à la théorie</span></a>
+</div>
+
+</div>
+<div class="home-visual">
+<img src="images/nuage.svg" alt="">
+</div>
+</div>
+</div>
+</div>

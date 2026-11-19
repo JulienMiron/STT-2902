@@ -1,0 +1,47 @@
+<div class="portal-hero">
+
+<p class="eyebrow">STT-2902 — Modélisation statistique</p>
+
+# Projet SAÉ
+
+<p class="hero-lead">Concevoir une situation d'apprentissage et d'évaluation pour le secondaire · en équipe · 25 % de la note finale.</p>
+
+</div>
+
+::: {.callout-note}
+## Le principe
+
+En équipe de trois ou quatre, vous concevez une situation d'apprentissage et d'évaluation (SAÉ) pour une classe du 2^e^ cycle du secondaire, à partir de **données réelles**. Le projet comporte deux volets : l'activité telle que les élèves la vivraient, et un *dossier de l'enseignant* qui justifie la statistique qui se cache derrière.
+:::
+
+## Livrables
+
+| Semaine | Livrable | Contenu attendu | Poids |
+|:-:|---|---|--:|
+| 10 | [**Proposition**]{.cal-projet} | Niveau et séquence visés, notions du programme, source des données, question de départ (1 page) | 3 % |
+| 14 | [**Présentation**]{.cal-presentations} | Faire vivre une partie de l'activité à la classe (15 min + discussion) | 7 % |
+| 14 | [**Dossier de l'enseignant**]{.cal-projet} | Activité complète et justification statistique (voir ci-dessous) | 15 % |
+
+## Contenu du dossier de l'enseignant
+
+- **L'activité** : énoncé pour les élèves, données, déroulement, outils (calculatrice, GeoGebra, Desmos, tableur), critères d'évaluation.
+- **La statistique derrière** : l'analyse complète des données avec les outils du cours (régression, ANOVA ou tableau de contingence), hypothèses vérifiées, limites.
+- **L'écart entre les deux** : ce que la méthode du secondaire donne, ce que l'analyse complète ajoute, et ce qu'il est raisonnable de dire aux élèves.
+- **Les conceptions erronées anticipées** : au moins trois réponses d'élèves plausibles mais fausses, avec la rétroaction prévue.
+
+## Sources de données suggérées
+
+- Institut de la statistique du Québec
+- Statistique Canada
+- Données Québec (données ouvertes)
+- Données recueillies en classe (mesures, sondage, expérience)
+
+## Critères d'évaluation
+
+| Critère | Poids |
+|---|--:|
+| Justesse de l'analyse statistique | 35 % |
+| Pertinence de l'activité pour le niveau visé | 25 % |
+| Analyse de l'écart entre la méthode du secondaire et l'analyse complète | 20 % |
+| Conceptions erronées et rétroaction | 10 % |
+| Qualité de la langue et de la présentation | 10 % |

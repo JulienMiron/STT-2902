@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - plan-de-cours.qmd
+    - calendrier.qmd
+    - secondaire.qmd
+    - activites.qmd
+    - projet.qmd
+
+website:
+  title: "STT-2902 Modélisation statistique"
+  site-url: https://julienmiron.ca/STT-2902/
+  repo-url: https://github.com/JulienMiron/STT-2902
+  repo-actions: [issue]
+
+  page-footer:
+    left: "Site de cours STT-2902"
+    center: "[Julien Miron](https://julienmiron.ca/)"
+    right: "Généré avec Quarto"
+
+  navbar:
+    background: "#0E9E6C"
+    foreground: "#ffffff"
+    left:
+      - href: index.qmd
+        text: Accueil
+      - href: plan-de-cours.qmd
+        text: Plan de cours
+      - href: calendrier.qmd
+        text: Calendrier
+      - href: secondaire.qmd
+        text: Du secondaire à la théorie
+      - href: activites.qmd
+        text: Activités
+      - href: projet.qmd
+        text: Projet SAÉ
+
+lang: fr
+language:
+  title-block-author-single: "Auteur"
+  title-block-modified: "Dernière modification"
+date-modified: last-modified
+date-format: "D MMMM YYYY"
+
+format:
+  html:
+    favicon: images/nuage.svg
+    include-after-body:
+      - date-modification-bas-page.html
+    theme:
+      light: lumen
+    css: styles.css
+    toc: false
+
+editor: source
